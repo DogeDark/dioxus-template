@@ -28,7 +28,7 @@ let is_mobile = variable::prompt("Do you want to build for Dioxus Mobile?", true
 if is_mobile {
     // Mobile can't currently be a default platform.
     //platforms += "Mobile";
-    features += "mobile = [\"dioxus/desktop\"]";
+    features += "mobile = [\"dioxus/mobile\"]";
 }
 
 // Make sure the user chose at least one platform.
