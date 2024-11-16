@@ -19,4 +19,5 @@ To run and test the templates without `dx`, you can run `cargo generate --path m
 The templates have a few different scripts:
 - `init.rhai` runs first and sets variables that tell the `init-common.rhai` script what this template needs.
 - `init-common.rhai` is a common script for all the templates which asks for a variety of information from the user.
+- `vars.rhai` is a script that can set additional variables based on the already-ran scripts. For example, generating a new string to insert into the template based on previous variables.
 - `conditional-files.rhai` runs last and deletes files and folders based on the variables set by `init-common.rhai`.
