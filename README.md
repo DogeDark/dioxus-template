@@ -15,3 +15,8 @@ All templates support every platform, router, and fullstack.
 
 ### Local Development
 To run and test the templates without `dx`, you can run `cargo generate --path myPathToTemplates`
+
+The templates have a few different scripts:
+- `init.rhai` runs first and sets variables that tell the `init-common.rhai` script what this template needs.
+- `init-common.rhai` is a common script for all the templates which asks for a variety of information from the user.
+- `conditional-files.rhai` runs last and deletes files and folders based on the variables set by `init-common.rhai`.

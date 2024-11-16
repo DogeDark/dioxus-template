@@ -1,5 +1,6 @@
 // These are variables that are used in liquid
 const NEEDS_DEFAULT_PLATFORM_VAR = "needs_default_platform";
+const NEEDS_TAILWIND_PROMPT_VAR = "needs_tailwind_prompt";
 
 const DIOXUS_DEP_FEAT_VAR = "dioxus_dep_features";
 const DEFAULT_PLATFORM_VAR = "default_platform";
@@ -42,14 +43,19 @@ if is_mobile {
 
 // Make sure the user chose at least one platform.
 if platforms.len() == 0 {
-    abort("You must choose at least one platform to build for.");
+    if is_mobile {
+        variable::set(DEFAULT_PLATFORM_VAR, "mobile");
+    } else {
+        abort("You must choose at least one platform to build for.");
+    }
+} else {
+    // Ask the default platform from the selected platforms if the sub template requests it.
+    if variable::get(NEEDS_DEFAULT_PLATFORM_VAR) {
+        let default_platform = variable::prompt("Which platform do you want DX to serve by default?", platforms[0], platforms);
+        variable::set(DEFAULT_PLATFORM_VAR, default_platform.to_lower());
+    }
 }
 
-// Ask the default platform from the selected platforms. If ios or android, we must replace with desktop feature.
-if variable::get(NEEDS_DEFAULT_PLATFORM_VAR) {
-    let default_platform = variable::prompt("Which platform do you want DX to serve by default?", platforms[0], platforms);
-    variable::set(DEFAULT_PLATFORM_VAR, default_platform.to_lower());
-}
 
 // Use fullstack?
 let is_fullstack = variable::prompt("Do you want to use Dioxus Fullstack?", true);
@@ -73,6 +79,8 @@ switch [is_router, is_fullstack] {
 variable::set(FEATURES_VAR, features);
 
 // Assets
-let is_tailwind = variable::prompt("Do you want to use Tailwind CSS?", false);
-variable::set(IS_TAILWIND_VAR, is_tailwind);
+if variable::get(NEEDS_TAILWIND_PROMPT_VAR) {
+    let is_tailwind = variable::prompt("Do you want to use Tailwind CSS?", false);
+    variable::set(IS_TAILWIND_VAR, is_tailwind);
+}
 
