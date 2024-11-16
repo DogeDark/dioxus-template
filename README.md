@@ -13,5 +13,5 @@ This repository is organized into three sub-templates:
 
 All templates support every platform, router, and fullstack.
 
-### Development
-To test the templates, you can run `cargo generate --path myPathToTemplates`
+### Local Development
+To run and test the templates without `dx`, you can run `cargo generate --path myPathToTemplates`
