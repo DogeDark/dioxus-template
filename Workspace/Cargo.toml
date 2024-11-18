@@ -1,4 +1,5 @@
 [workspace]
+resolver = "2"
 members = [
     "ui",
     {%- for member in workspace_members %}
@@ -7,7 +8,7 @@ members = [
 ]
 
 [workspace.dependencies]
-dioxus = { git = "https://github.com/DioxusLabs/dioxus" }
+dioxus = { {{ dioxus_dep_src }} }
 dioxus-logger = "0.5"
 
 # workspace
