@@ -20,7 +20,7 @@ mod views;
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 enum Route {
-    #[layout(Navbar)]
+    #[layout(WebNavbar)]
     #[route("/")]
     Home {},
     #[route("/blog/:id")]
@@ -56,3 +56,25 @@ fn App() -> Element {
         {%- endif %}
     }
 }
+
+{% if is_router -%}
+/// A web-specific Router around the shared `Navbar` component
+/// which allows us to use the web-specific `Route` enum.
+#[component]
+fn WebNavbar() -> Element {
+    rsx! {
+        Navbar {
+            Link {
+                to: Route::Home {},
+                "Home"
+            }
+            Link {
+                to: Route::Blog { id: 1 },
+                "Blog"
+            }  
+        }
+        
+        Outlet::<Route> {}
+    }
+}
+{%- endif %}

@@ -12,3 +12,6 @@ dioxus-logger = "0.5"
 
 # workspace
 ui = { path = "ui" }
+{% if is_fullstack -%}
+server = { path = "server" }
+{%- endif %}

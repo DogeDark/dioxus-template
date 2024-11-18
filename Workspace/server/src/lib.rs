@@ -1,5 +1,6 @@
 //! This crate contains all fullstack server functions.
-use dioxus::dioxus_fullstack::prelude::*;
+use dioxus::prelude::*;
+use dioxus_logger::tracing::info;
 
 /// Add two numbers together on the server.
 #[server(AddNumbers)]

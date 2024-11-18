@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 dioxus = { workspace = true }
+dioxus-logger = { workspace = true }
+{% if is_fullstack -%}
+server = { workspace = true }
+{%- endif %}

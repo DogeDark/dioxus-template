@@ -20,7 +20,7 @@ mod views;
 #[derive(Debug, Clone, Routable, PartialEq)]
 #[rustfmt::skip]
 enum Route {
-    #[layout(Navbar)]
+    #[layout(MobileNavbar)]
     #[route("/")]
     Home {},
     #[route("/blog/:id")]
@@ -54,3 +54,25 @@ fn App() -> Element {
         {%- endif %}
     }
 }
+
+{% if is_router -%}
+/// A mobile-specific Router around the shared `Navbar` component
+/// which allows us to use the mobile-specific `Route` enum.
+#[component]
+fn MobileNavbar() -> Element {
+    rsx! {
+        Navbar {
+            Link {
+                to: Route::Home {},
+                "Home"
+            }
+            Link {
+                to: Route::Blog { id: 1 },
+                "Blog"
+            }  
+        }
+        
+        Outlet::<Route> {}
+    }
+}
+{%- endif %}

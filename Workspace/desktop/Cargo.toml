@@ -1,9 +1,16 @@
 [package]
-name = "web"
+name = "desktop"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-dioxus = { workspace = true, features = ["desktop"] }
+dioxus = { workspace = true, features = [{{- router_feature -}}] }
 dioxus-logger = { workspace = true }
 ui = { workspace = true }
+
+[features]
+default = ["desktop"]
+desktop = ["dioxus/desktop"]
+{% if is_fullstack -%}
+server = ["dioxus/server"]
+{%- endif %}

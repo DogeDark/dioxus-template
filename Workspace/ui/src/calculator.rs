@@ -5,7 +5,7 @@ const CALCULATOR_CSS: Asset = asset!("/assets/styling/calculator.css");
 
 /// Calculator component that calls to our fullstack server to perform calculations.
 #[component]
-fn Calculator() -> Element {
+pub fn Calculator() -> Element {
     let mut first_number = use_signal(|| 1);
     let mut second_number = use_signal(|| 2);
     let mut result: Signal<Option<i32>> = use_signal(|| None);
