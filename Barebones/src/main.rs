@@ -130,37 +130,50 @@ fn Calculator() -> Element {
     rsx! {
         div {
             id: "calculator",
+            h4 { "ServerFn Calculator" }
 
-            // Inputs
-            label { "First Number: "}
-            input {
-                r#type: "number",
-                value: first_number,
-                oninput: move |event| first_number.set(event.value().parse().expect("input should only be a number")),
-            }
-            br {}
-            label { "Second Number: "}
-            input {
-                r#type: "number",
-                value: second_number,
-                oninput: move |event| second_number.set(event.value().parse().expect("input should only be a number")),
-            }
-            br {}
-
-            // Submit button
-            button {
-                onclick: move |_| async move {
-                    if let Ok(data) = add_numbers(first_number(), second_number()).await {
-                        info!("Client received calculated number: {}", data);
-                        result.set(Some(data));
+            // Top row of inputs
+            div {
+                id: "calculator-inputs",
+                div {
+                    class: "calculator-input",
+                    label { "First Number: "}
+                    input {
+                        r#type: "number",
+                        value: first_number,
+                        oninput: move |event| first_number.set(event.value().parse().expect("input should only be a number")),
                     }
-                },
-                "Add Numbers"
+                }
+                div {
+                    class: "calculator-input",
+                    label { "Second Number: "}
+                    input {
+                        r#type: "number",
+                        value: second_number,
+                        oninput: move |event| second_number.set(event.value().parse().expect("input should only be a number")),
+                    }
+                }
             }
 
-            // Result
-            if let Some(result) = result() {
-                p { "Result: {result}" }
+            // Bottom row
+            div {
+                id: "calculator-bottom",
+
+                // Submit button
+                button {
+                    onclick: move |_| async move {
+                        if let Ok(data) = add_numbers(first_number(), second_number()).await {
+                            info!("Client received calculated number: {}", data);
+                            result.set(Some(data));
+                        }
+                    },
+                    "Add Numbers"
+                }
+
+                // Result
+                if let Some(result) = result() {
+                    p { "Result: {result}" }
+                }
             }
         }
     }

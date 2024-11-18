@@ -21,4 +21,5 @@ if !is_router {
 let is_fullstack = variable::get(IS_FULLSTACK_VAR);
 if !is_fullstack {
     file::delete("src/components/calculator.rs");
+    file::delete("assets/styling/calculator.css");
 }

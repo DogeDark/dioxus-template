@@ -61,7 +61,7 @@ if platforms.len() == 0 {
 let is_fullstack = variable::prompt("Do you want to use Dioxus Fullstack?", true);
 variable::set(IS_FULLSTACK_VAR, is_fullstack);
 if is_fullstack {
-    features += "server = [\"dioxus/axum\"]";
+    features += "server = [\"dioxus/server\"]";
 }
 
 // Use the router?
