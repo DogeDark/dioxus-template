@@ -1,0 +1,36 @@
+#!/usr/bin/expect
+
+spawn dx new --template . --subtemplate Bare-Bones
+
+# Yes to web prompt
+expect {}
+send "\r"
+
+# Yes to desktop prompt
+expect {}
+send "\r"
+
+# Yes to mobile prompt
+expect {}
+send "\r"
+
+# Yes to first default platform
+expect {}
+send "\r"
+
+# Yes to fullstack
+expect {}
+send "\r"
+
+# Yes to router
+expect {}
+send "\r"
+
+# no (default) to tailwind
+expect {}
+send "\r"
+
+# project name
+expect {}
+send "barebones-all\r"
+expect

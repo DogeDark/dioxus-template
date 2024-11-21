@@ -1,0 +1,46 @@
+name: Templates CI
+
+on:
+  push:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+
+# workflow_dispatch:
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+
+jobs:
+  check:
+  if: github.event.pull_request.draft == false
+  name: Check
+  runs-on: ubuntu-latest
+  steps:
+    - uses: actions/checkout@v4
+    - uses: dtolnay/rust-toolchain@stable
+    - uses: cargo-bins/cargo-binstall@v1.10.13
+    - run: cargo binstall dioxus-cli@0.6.0-alpha.5
+    - run: sudo apt install expect
+    # Test bare bones
+    - run: expect ./scripts/generate-barebones-all.exp
+    - run: cd barebones-all
+    - run: cargo check
+    - run: cd ..
+    # Test jumpstart
+    - run: expect ./scripts/generate-jumpstart-all.exp
+    - run: cd jumpstart-all
+    - run: cargo check
+    - run: cd ..
+    # Test workspace
+    - run: expect ./scripts/generate-workspace-all.exp
+    - run: cd workspace-all
+    - run: cargo check --all
+    - run: cd ..
+      
+
+            
