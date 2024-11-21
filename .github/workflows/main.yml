@@ -25,7 +25,8 @@ jobs:
       - uses: dtolnay/rust-toolchain@stable
       - uses: cargo-bins/cargo-binstall@v1.10.13
       - run: cargo binstall dioxus-cli@0.6.0-alpha.5
-      - run: sudo apt install expect libgtk-3-dev libsoup-3.0-dev libjavascriptcoregtk-4.1-dev
+      - run: sudo apt install expect libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
+      #libgtk-3-dev libsoup-3.0-dev libjavascriptcoregtk-4.1-dev
 
       # Test bare bones
       - run: expect ./scripts/generate-barebones-all.exp
