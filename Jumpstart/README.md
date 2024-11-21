@@ -26,3 +26,10 @@ To run for a different platform, use the `--platform platform` flag. E.g.
 ```bash
 dx serve --platform desktop
 ```
+
+{% if is_mobile -%}
+To serve on mobile, you need to explicitly set your target device, `android` or `ios`:
+```bash
+dx serve --platform android
+```
+{%- endif %}

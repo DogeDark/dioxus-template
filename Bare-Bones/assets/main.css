@@ -27,7 +27,7 @@ body {
     color: white;
     text-decoration: none;
     margin-top: 20px;
-    margin: 10px;
+    margin: 10px 0px;
     border: white 1px solid;
     border-radius: 5px;
     padding: 10px;
@@ -73,9 +73,9 @@ body {
 {%- endif %}
 
 {% if is_fullstack -%}
-/* Calculator */
-#calculator {
-    width: fit-content;
+/* Echo */
+#echo {
+    width: 360px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 50px;
@@ -84,59 +84,28 @@ body {
     border-radius: 10px;
 }
 
-#calculator>h4 {
+#echo>h4 {
     margin: 0px 0px 15px 0px;
 }
 
-#calculator-inputs {
-    display: flex;
-    flex-direction: row;
-}
 
-.calculator-input>input {
+#echo>input {
     border: none;
     border-bottom: 1px white solid;
     background-color: transparent;
     color: #ffffff;
     transition: border-bottom-color 0.2s ease;
     outline: none;
+    display: block;
+    padding: 0px 0px 5px 0px;
+    width: 100%;
 }
 
-.calculator-input>input:focus {
+#echo>input:focus {
     border-bottom-color: #6d85c6;
 }
 
-.calculator-input>label,
-.calculator-input>input {
-    display: block;
-    margin-top: 5px;
-}
-
-.calculator-input:last-child {
-    margin-left: 10px;
-}
-
-#calculator-bottom {
-    display: flex;
-    flex-direction: row;
-    margin-top: 20px;
-}
-
-#calculator-bottom>button {
-    border: none;
-    border-radius: 5px;
-    background-color: #546799;
-    color: #ffffff;
-    padding: 10px;
-    transition: background-color 0.2s ease;
-}
-
-#calculator-bottom>button:hover {
-    cursor: pointer;
-    background-color: #6d85c6;
-}
-
-#calculator-bottom>p {
-    margin: 0px 0px 0px auto;
+#echo>p {
+    margin: 20px 0px 0px auto;
 }
 {%- endif %}

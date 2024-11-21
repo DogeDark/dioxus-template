@@ -1,6 +1,6 @@
 # Development
 
-Your new barebones project includes minimal organization with a single `main.rs` file and a few assets.
+Your new bare-bones project includes minimal organization with a single `main.rs` file and a few assets.
 
 {% if is_tailwind -%}
 ### Tailwind
@@ -25,3 +25,10 @@ To run for a different platform, use the `--platform platform` flag. E.g.
 ```bash
 dx serve --platform desktop
 ```
+
+{% if is_mobile -%}
+To serve on mobile, you need to explicitly set your target device, `android` or `ios`:
+```bash
+dx serve --platform android
+```
+{%- endif %}

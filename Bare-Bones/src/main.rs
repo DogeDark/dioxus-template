@@ -1,5 +1,5 @@
 use dioxus::prelude::*;
-use dioxus_logger::tracing::{Level, info};
+use dioxus_logger::tracing::Level;
 
 {% if is_router %}
 #[derive(Debug, Clone, Routable, PartialEq)]
@@ -19,7 +19,6 @@ const HEADER_SVG: Asset = asset!("/assets/header.svg");
 
 fn main() {
     dioxus_logger::init(Level::INFO).expect("failed to init logger");
-    info!("Starting app.");
     dioxus::launch(App);
 }
 
@@ -37,7 +36,7 @@ fn App() -> Element {
         {%- else -%}
         Hero {}
         {% if is_fullstack -%}
-        Calculator {}
+        Echo {}
         {%- endif %}
         {%- endif %}
     }
@@ -68,7 +67,7 @@ fn Home() -> Element {
     rsx! {
         Hero {}
         {% if is_fullstack -%}
-        Calculator {}
+        Echo {}
         {%- endif %}
     }
 }
@@ -120,69 +119,36 @@ fn Navbar() -> Element {
 {%- endif %}
 
 {% if is_fullstack -%}
-/// Calculator component that calls to our fullstack server to perform calculations.
+/// Echo component that demonstrates fullstack server functions.
 #[component]
-fn Calculator() -> Element {
-    let mut first_number = use_signal(|| 1);
-    let mut second_number = use_signal(|| 2);
-    let mut result: Signal<Option<i32>> = use_signal(|| None);
+fn Echo() -> Element {
+    let mut response = use_signal(|| String::new());
 
     rsx! {
         div {
-            id: "calculator",
-            h4 { "ServerFn Calculator" }
-
-            // Top row of inputs
-            div {
-                id: "calculator-inputs",
-                div {
-                    class: "calculator-input",
-                    label { "First Number: "}
-                    input {
-                        r#type: "number",
-                        value: first_number,
-                        oninput: move |event| first_number.set(event.value().parse().expect("input should only be a number")),
-                    }
-                }
-                div {
-                    class: "calculator-input",
-                    label { "Second Number: "}
-                    input {
-                        r#type: "number",
-                        value: second_number,
-                        oninput: move |event| second_number.set(event.value().parse().expect("input should only be a number")),
-                    }
-                }
+            id: "echo",
+            h4 { "ServerFn Echo" }
+            input {
+                placeholder: "Type here to echo...",
+                oninput:  move |event| async move {
+                    let data = echo_server(event.value()).await.unwrap();
+                    response.set(data);
+                },
             }
 
-            // Bottom row
-            div {
-                id: "calculator-bottom",
-
-                // Submit button
-                button {
-                    onclick: move |_| async move {
-                        if let Ok(data) = add_numbers(first_number(), second_number()).await {
-                            info!("Client received calculated number: {}", data);
-                            result.set(Some(data));
-                        }
-                    },
-                    "Add Numbers"
-                }
-
-                // Result
-                if let Some(result) = result() {
-                    p { "Result: {result}" }
+            if !response().is_empty() {
+                p { 
+                    "Server echoed: " 
+                    i { "{response}" }
                 }
             }
         }
     }
 }
 
-/// Add two numbers together on the server.
-#[server(AddNumbers)]
-async fn add_numbers(first: i32, last: i32) -> Result<i32, ServerFnError> {
-    info!("Server is calculating `{} + {}`", first, last);
-    Ok(first + last)
+/// Echo the user input on the server.
+#[server(EchoServer)]
+async fn echo_server(input: String) -> Result<String, ServerFnError> {
+    Ok(input)
 }
 {%- endif %}

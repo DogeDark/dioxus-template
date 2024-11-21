@@ -17,7 +17,9 @@ and serve:
 dx serve
 ```
 
-Mobile platforms are shared in a single crate and requires usage of the `--platform` flag:
+{% if is_mobile -%}
+Mobile platforms are shared in a single crate. To serve mobile, you need to explicitly set your target device, `android` or `ios`:
 ```bash
 dx serve --platform android
 ```
+{%- endif %}

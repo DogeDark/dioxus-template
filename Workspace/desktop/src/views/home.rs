@@ -1,6 +1,6 @@
 use dioxus::prelude::*;
 {% if is_fullstack -%}
-use ui::{Hero, Calculator};
+use ui::{Hero, Echo};
 {%- else -%}
 use ui::Hero;
 {%- endif %}
@@ -10,7 +10,7 @@ pub fn Home() -> Element {
     rsx! {
         Hero {}
         {% if is_fullstack -%}
-        Calculator {}
+        Echo {}
         {%- endif %}
     }
 }

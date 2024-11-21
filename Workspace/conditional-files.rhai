@@ -24,8 +24,8 @@ if !is_mobile {
 let is_fullstack = variable::get(IS_FULLSTACK_VAR);
 if !is_fullstack {
     file::delete("server");
-    file::delete("ui/src/calculator.rs");
-    file::delete("ui/assets/styling/calculator.css");
+    file::delete("ui/src/echo.rs");
+    file::delete("ui/assets/styling/echo.css");
 }
 
 let is_router = variable::get(IS_ROUTER_VAR);

@@ -7,6 +7,6 @@ pub use navbar::Navbar;
 {%- endif %}
 
 {% if is_fullstack -%}
-mod calculator;
-pub use calculator::Calculator;
+mod echo;
+pub use echo::Echo;
 {%- endif %}

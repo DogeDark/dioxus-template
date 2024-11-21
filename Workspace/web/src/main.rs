@@ -1,11 +1,11 @@
 use dioxus::prelude::*;
-use dioxus_logger::tracing::{info, Level};
+use dioxus_logger::tracing::Level;
 
 {% if is_router -%}
 use ui::Navbar;
 {%- else -%}
 {% if is_fullstack -%}
-use ui::{Hero, Calculator};
+use ui::{Hero, Echo};
 {%- else -%}
 use ui::Hero;
 {%- endif %}
@@ -33,7 +33,6 @@ const MAIN_CSS: Asset = asset!("/assets/main.css");
 
 fn main() {
     dioxus_logger::init(Level::INFO).expect("failed to init logger");
-    info!("Starting app.");
     dioxus::launch(App);
 }
 
@@ -51,7 +50,7 @@ fn App() -> Element {
         {%- else -%}
         Hero {}
         {% if is_fullstack -%}
-        Calculator {}
+        Echo {}
         {%- endif %}
         {%- endif %}
     }
