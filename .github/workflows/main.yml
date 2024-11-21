@@ -26,21 +26,24 @@ jobs:
       - uses: cargo-bins/cargo-binstall@v1.10.13
       - run: cargo binstall dioxus-cli@0.6.0-alpha.5
       - run: sudo apt install expect
+
       # Test bare bones
       - run: expect ./scripts/generate-barebones-all.exp
-      - run: cd barebones-all
-      - run: cargo check
-      - run: cd ..
+      - name: Test Bare-Bones
+        working-directory: ./barebones-all
+        run: cargo check
+
       # Test jumpstart
       - run: expect ./scripts/generate-jumpstart-all.exp
-      - run: cd jumpstart-all
-      - run: cargo check
-      - run: cd ..
+      - name: Test Jumpstart
+        working-directory: ./jumpstart-all
+        run: cargo check
+
       # Test workspace
       - run: expect ./scripts/generate-workspace-all.exp
-      - run: cd workspace-all
-      - run: cargo check --all
-      - run: cd ..
+      - name: Test Workspace
+        working-directory: ./workspace-all
+        run: cargo check
       
 
             
