@@ -30,7 +30,7 @@ jobs:
 
       # Test bare bones
       - name: Create Bare-Bones
-        run: dx new --name barebones-all --template . --subtemplate Bare-Bones --yes --define default_platform=web
+        run: dx new --template . --subtemplate Bare-Bones --yes --define default_platform=web barebones-all
 
       - name: Test Bare-Bones
         working-directory: ./barebones-all
@@ -38,7 +38,7 @@ jobs:
 
       # Test Jumpstart
       - name: Create Jumpstart
-        run: dx new --name jumpstart-all --template . --subtemplate Jumpstart --yes --define default_platform=web
+        run: dx new --template . --subtemplate Jumpstart --yes --define default_platform=web jumpstart-all
 
       - name: Test Jumpstart
         working-directory: ./jumpstart-all
@@ -46,7 +46,7 @@ jobs:
 
       # Test Workspace
       - name: Create Workspace
-        run: dx new --name workspace-all --template . --subtemplate Workspace --yes
+        run: dx new --template . --subtemplate Workspace --yes workspace-all
 
       - name: Test Workspace
         working-directory: ./workspace-all
