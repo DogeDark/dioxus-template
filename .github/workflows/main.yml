@@ -29,22 +29,20 @@ jobs:
       - run: sudo apt install expect libwebkit2gtk-4.1-dev build-essential curl wget file libxdo-dev libssl-dev libayatana-appindicator3-dev librsvg2-dev
 
       # Test bare bones
-      - run: expect ./scripts/generate-barebones-all.exp
+      - run: dx new --name barebones-all --template . --subtemplate Bare-Bones --yes --define default_platform=web
       - name: Test Bare-Bones
         working-directory: ./barebones-all
         run: cargo check
 
-      # Test jumpstart
-      - run: expect ./scripts/generate-jumpstart-all.exp
+      # Test Jumpstart
+      - run: dx new --name jumpstart-all --template . --subtemplate Jumpstart --yes --define default_platform=web
       - name: Test Jumpstart
         working-directory: ./jumpstart-all
         run: cargo check
 
-      # Test workspace
-      - run: expect ./scripts/generate-workspace-all.exp
+      # Test Workspace
+      - run: dx new --name workspace-all --template . --subtemplate Workspace --yes --define default_platform=web
       - name: Test Workspace
         working-directory: ./workspace-all
         run: cargo check
       
-
-            
