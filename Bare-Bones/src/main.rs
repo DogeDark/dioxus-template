@@ -16,6 +16,9 @@ enum Route {
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/main.css");
 const HEADER_SVG: Asset = asset!("/assets/header.svg");
+{% if is_tailwind -%}
+const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");
+{%- endif %}
 
 fn main() {
     dioxus_logger::init(Level::INFO).expect("failed to init logger");
@@ -30,6 +33,9 @@ fn App() -> Element {
         // Global app resources
         document::Link { rel: "icon", href: FAVICON }
         document::Link { rel: "stylesheet", href: MAIN_CSS }
+        {% if is_tailwind -%}
+        document::Link { rel: "stylesheet", href: TAILWIND_CSS }
+        {%- endif %}
 
         {% if is_router -%}
         Router::<Route> {}
