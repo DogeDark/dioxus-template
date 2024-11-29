@@ -32,7 +32,7 @@ enum Route {
 const FAVICON: Asset = asset!("/assets/favicon.ico");
 const MAIN_CSS: Asset = asset!("/assets/styling/main.css");
 {% if is_tailwind -%}
-const TAILWIND_CSS: Asset = asset!("/assets/tailwind.css");
+const TAILWIND_CSS: Asset = asset!("/assets/styling/tailwind.css");
 {%- endif %}
 
 fn main() {
