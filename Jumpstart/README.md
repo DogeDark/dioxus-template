@@ -1,6 +1,6 @@
 # Development
 
-Your new jumpstart project includes basic organization with an organized `assets` folder and a `components` folder. 
+Your new jumpstart project includes basic organization with an organized `assets` folder and a `components` folder.
 If you chose to develop with the router feature, you will also have a `views` folder.
 
 {% if is_tailwind -%}

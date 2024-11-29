@@ -70,9 +70,9 @@ fn WebNavbar() -> Element {
             Link {
                 to: Route::Blog { id: 1 },
                 "Blog"
-            }  
+            }
         }
-        
+
         Outlet::<Route> {}
     }
 }

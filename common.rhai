@@ -1,4 +1,4 @@
-// Dioxus version. This only needs changed to update all templates. 
+// Dioxus version. This only needs changed to update all templates.
 // You can change this in development to be `path = "abc/"` or `git = "xyz"` for local development.
 const DIOXUS_DEP_SRC_VAR = "dioxus_dep_src";
 variable::set(DIOXUS_DEP_SRC_VAR, "version = \"0.6.0-alpha.5\"");
@@ -76,7 +76,7 @@ if variable::get(NEEDS_DEFAULT_PLATFORM_VAR) {
         } else {
             let default_platform = variable::prompt("Which platform do you want DX to serve by default?", platforms[0], platforms);
             variable::set(DEFAULT_PLATFORM_VAR, default_platform.to_lower());
-        }     
+        }
     }
 }
 

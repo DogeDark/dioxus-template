@@ -143,8 +143,8 @@ fn Echo() -> Element {
             }
 
             if !response().is_empty() {
-                p { 
-                    "Server echoed: " 
+                p {
+                    "Server echoed: "
                     i { "{response}" }
                 }
             }
