@@ -68,9 +68,9 @@ fn MobileNavbar() -> Element {
             Link {
                 to: Route::Blog { id: 1 },
                 "Blog"
-            }  
+            }
         }
-        
+
         Outlet::<Route> {}
     }
 }
